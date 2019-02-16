@@ -1,0 +1,25 @@
+{
+  "name": "bitmap-transformer",
+  "version": "1.0.0",
+  "description": "bitmap transformer",
+  "main": "index.js",
+  "directories": {
+    "lib": "lib"
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Nikki1686/Bitmap-Transformer.git"
+  },
+  "author": "Nikki Carthen, Erik Johnson, Karl Polintan, Jesse A, Rick Bellamy",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Nikki1686/Bitmap-Transformer/issues"
+  },
+  "homepage": "https://github.com/Nikki1686/Bitmap-Transformer#readme",
+  "dependencies": {
+    "jest": "^24.1.0"
+  }
+}
