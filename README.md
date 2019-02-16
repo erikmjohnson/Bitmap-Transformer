@@ -4,7 +4,7 @@
 ## LAB 05
 [![Build Status]
 
-### Author: Nikki Carthen, Erik Johnson, Jesse Atay, Karl Polintan
+### Author: Nikki Carthen, Erik Johnson, Jesse Atay, Karl Polintan, Rick Bellamy
 
 ### Links and Resources
 * [repo](https://github.com/Nikki1686/Bitmap-Transformer)
