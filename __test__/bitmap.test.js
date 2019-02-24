@@ -8,4 +8,4 @@ describe('Bitmap Header', () => {
 
 describe('Transformation Checker', () => {
 
-});
+});git
