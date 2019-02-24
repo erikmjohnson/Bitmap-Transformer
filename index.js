@@ -18,7 +18,17 @@ function Bitmap(filePath) {
 Bitmap.prototype.parse = function(buffer) {
     this.buffer = buffer;
     this.type = buffer.toString('utf-8', 0, 2);
-    //... and so on
+    this.size = buffer.readInt32LE(2);
+    this.offset = buffer.readInt32LE(10);
+    this.headerSize = buffer.readInt32LE(14);
+    this.width = buffer.readInt32LE(18);
+    this.height = buffer.readInt32LE(22);
+    this.bitPerPixel = buffer.readInt16LE(28);
+    this.colorArray = buffer.slice(54, this.offset);
+    this.pixelArray = buffer.slice(1078);
+    if (!this.colorArray.length) {
+        throw 'Invalid .bmp Format';
+    }
 };
 
 /**

@@ -2,10 +2,23 @@
 
 const Bitmapper = require('../index.js');
 
-describe('Bitmap Header', () => {
+describe('Bitmap Parsing', () => {
+    describe('Bitmap Header', () => {
 
+    });
 });
 
 describe('Transformation Checker', () => {
+    describe('Transform1', () => {
 
-});git
+    });
+    describe('Transform2', () => {
+
+    });
+    describe('Transform3', () => {
+
+    });
+    describe('Transform4', () => {
+
+    });
+});
