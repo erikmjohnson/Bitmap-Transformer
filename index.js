@@ -105,6 +105,7 @@ const readFile = (file, transformation) => {
         //parse
         newBitmap.parse(data);
 
+
         //create constructor from parsed color array
        let colorArray = data.slice(54, newBitmap.offset);
        let transformConstructor = new Transform(colorArray);
