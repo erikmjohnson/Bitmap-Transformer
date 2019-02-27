@@ -18,7 +18,17 @@ function Bitmap(filePath) {
 Bitmap.prototype.parse = function(buffer) {
     this.buffer = buffer;
     this.type = buffer.toString('utf-8', 0, 2);
-    //... and so on
+    this.size = buffer.readInt32LE(2);
+    this.offset = buffer.readInt32LE(10);
+    this.headerSize = buffer.readInt32LE(14);
+    this.width = buffer.readInt32LE(18);
+    this.height = buffer.readInt32LE(22);
+    this.bitPerPixel = buffer.readInt16LE(28);
+    this.colorArray = buffer.slice(54, this.offset);
+    this.pixelArray = buffer.slice(1078);
+    if (!this.colorArray.length) {
+        throw 'Invalid .bmp Format';
+    }
 };
 
 /**
@@ -49,7 +59,7 @@ const transformGreyscale = (bmp) => {
 
 const doTheInversion = (bmp) => {
     bmp = {};
-}
+};
 
 /**
  * A dictionary of transformations
@@ -58,6 +68,7 @@ const doTheInversion = (bmp) => {
 const transforms = {
     greyscale: transformGreyscale,
     invert: doTheInversion
+
 };
 
 // ------------------ GET TO WORK ------------------- //
@@ -80,15 +91,26 @@ function transformWithCallbacks() {
             if (err) {
                 throw err;
             }
-            console.log(`Bitmap Transformed: ${bitmap.newFile}`);
+            console.log(bitmap.colorArray);
         });
 
     });
 }
+
+//Looking at color table
+
+// fs.readFile(file, (err, buffer) => {
+//
+//     if (err) throw err;
+//
+//     bitmap.parse(buffer);
+//
+//     return bitmap.colorArray;
+// });
 
 // TODO: Explain how this works (in your README)
 const [file, operation] = process.argv.slice(2);
 
 let bitmap = new Bitmap(file);
 
-transformWithCallbacks();
+    transformWithCallbacks();
