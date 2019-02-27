@@ -2,115 +2,145 @@
 
 const fs = require('fs');
 
-/**
- * Bitmap -- receives a file name, used in the transformer to note the new buffer
- * @param filePath
- * @constructor
- */
-function Bitmap(filePath) {
-    this.file = filePath;
+//quokka test 
+
+//bitmap class
+class Bitmap{
+    constructor(filepath){
+        this.filepath = filepath;
+    }
+
+    parse(buffer){
+        this. buffer = buffer;
+        this.type = buffer.toString('utf-8', 0, 2);
+        this.size = buffer.readInt32LE(2);
+        this.offset = buffer.readInt32LE(10);
+        this.headerSize = buffer.readInt32LE(14);
+        this.width = buffer.readInt32LE(18);
+        this.height = buffer.readInt32LE(22);
+        this.bitsPerPixel = buffer.readInt16LE(28);
+        this.colorArray = buffer.slice(54, this.offset);
+        this.pixelArray = buffer.slice(1078);
+    
+    }
 }
 
-/**
- * Parser -- accepts a buffer and will parse through it, according to the specification, creating object properties for each segment of the file
- * @param buffer
- */
-Bitmap.prototype.parse = function(buffer) {
-    this.buffer = buffer;
-    this.type = buffer.toString('utf-8', 0, 2);
-    this.size = buffer.readInt32LE(2);
-    this.offset = buffer.readInt32LE(10);
-    this.headerSize = buffer.readInt32LE(14);
-    this.width = buffer.readInt32LE(18);
-    this.height = buffer.readInt32LE(22);
-    this.bitPerPixel = buffer.readInt16LE(28);
-    this.colorArray = buffer.slice(54, this.offset);
-    this.pixelArray = buffer.slice(1078);
-    if (!this.colorArray.length) {
-        throw 'Invalid .bmp Format';
+const writeNewFile = (inputFile, transformation) => {
+
+    fs.writeFile(`./assets/${transformation}.bmp`, inputFile, (err) => {
+        if(err){
+            throw err;
+        }
+        console.log('Status 200');
+    });
+}
+
+// test transformations
+
+class Transform{
+    constructor(colorArray){
+        this.colorArray = colorArray;
     }
-};
 
-/**
- * Transform a bitmap using some set of rules. The operation points to some function, which will operate on a bitmap instance
- * @param operation
- */
-Bitmap.prototype.transform = function(operation) {
-    // This is really assumptive and unsafe
-    transforms[operation](this);
-    this.newFile = this.file.replace(/\.bmp/, `.${operation}.bmp`);
-};
+    negative(){
+        let reverseCounter = this.colorArray.length - 1;
+        for(let i = 0; i < this.colorArray.length; i++){
+            this.colorArray[i] = reverseCounter;
+            reverseCounter --;
+        }
+    };
 
-/**
- * Sample Transformer (greyscale)
- * Would be called by Bitmap.transform('greyscale')
- * Pro Tip: Use "pass by reference" to alter the bitmap's buffer in place so you don't have to pass it around ...
- * @param bmp
- */
-const transformGreyscale = (bmp) => {
+    pinkHighlights(){
+        for(let i = 0; i < this.colorArray.length; i++){
+            if(this.colorArray[i] === 0){
+                this.colorArray[i] = 255;
+            }
+         }
+    };
 
-    console.log('Transforming bitmap into greyscale', bmp);
+    allBlack(){
+        for(let i = 0; i < this.colorArray.length; i++){
+            this.colorArray[i] = 0;
+        }
+    };
 
-    //TODO: Figure out a way to validate that the bmp instance is actually valid before trying to transform it
+    allWhite(){
+        for(let i = 0; i < this.colorArray.length; i++){
+            this.colorArray[i] = 255;
+         }
+    };
 
-    //TODO: alter bmp to make the image greyscale ...
+    neon1(){
 
-};
+        for(let i = 0; i < this.colorArray.length; i+=3){
+            this.colorArray[i] = 0;
+            this.colorArray[i + 1] = 191;
+            this.colorArray[i + 2] = 255;
+        }
+    };
 
-const doTheInversion = (bmp) => {
-    bmp = {};
-};
+    neon2(){
 
-/**
- * A dictionary of transformations
- * Each property represents a transformation that someone could enter on the command line and then a function that would be called on the bitmap to do this job
- */
-const transforms = {
-    greyscale: transformGreyscale,
-    invert: doTheInversion
+        for(let i = 0; i < this.colorArray.length; i+=3){
+            this.colorArray[i] = 255;
+            this.colorArray[i + 1] = 0;
+            this.colorArray[i + 2] = 191;
+            this.colorArray[i + 3] = 0;
+        }
+    }
+}
 
-};
 
-// ------------------ GET TO WORK ------------------- //
+//file read
+const readFile = (file, transformation) => {
 
-function transformWithCallbacks() {
-
-    fs.readFile(file, (err, buffer) => {
-
-        if (err) {
+    fs.readFile(file, function(err, data){
+        if(err){
             throw err;
         }
 
-        bitmap.parse(buffer);
+        //create parseable file
+        let newBitmap = new Bitmap(data);
 
-        bitmap.transform(operation);
+        //parse
+        newBitmap.parse(data);
 
-        // Note that this has to be nested!
-        // Also, it uses the bitmap's instance properties for the name and thew new buffer
-        fs.writeFile(bitmap.newFile, bitmap.buffer, (err, out) => {
-            if (err) {
-                throw err;
-            }
-            console.log(bitmap.colorArray);
-        });
+
+        //create constructor from parsed color array
+       let colorArray = data.slice(54, newBitmap.offset);
+       let transformConstructor = new Transform(colorArray);
+
+       //transform based on input string
+        if(transformation.toLowerCase() === 'negative'){
+            transformConstructor.negative();
+        }
+
+        if(transformation.toLowerCase() === 'pinkhighlights'){
+            transformConstructor.pinkHighlights();
+        }
+
+        if(transformation.toLowerCase() === 'allblack'){
+            transformConstructor.allBlack();
+        }
+       
+        if(transformation.toLowerCase() === 'allwhite'){
+            transformConstructor.allWhite();
+        }
+
+        if(transformation.toLowerCase() === 'neon1'){
+            transformConstructor.neon1();
+        }
+       
+        if(transformation.toLowerCase() === 'neon2'){
+            transformConstructor.neon2();
+        }
+        writeNewFile(data, transformation);
 
     });
 }
 
-//Looking at color table
+//gets arguments from console input
+const [file, transformation] = process.argv.slice(2);
 
-// fs.readFile(file, (err, buffer) => {
-//
-//     if (err) throw err;
-//
-//     bitmap.parse(buffer);
-//
-//     return bitmap.colorArray;
-// });
-
-// TODO: Explain how this works (in your README)
-const [file, operation] = process.argv.slice(2);
-
-let bitmap = new Bitmap(file);
-
-    transformWithCallbacks();
+//reads file based on console input
+readFile(file, transformation);
