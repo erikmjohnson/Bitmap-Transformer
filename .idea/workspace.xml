@@ -1,12 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="00c7272e-70b7-4ef1-bc3d-6aea41c84fda" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/index.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib/linked-list.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib/node.js" beforeDir="false" />
-    </list>
+    <list default="true" id="00c7272e-70b7-4ef1-bc3d-6aea41c84fda" name="Default Changelist" comment="" />
     <ignored path="$PROJECT_DIR$/.tmp/" />
     <ignored path="$PROJECT_DIR$/temp/" />
     <ignored path="$PROJECT_DIR$/tmp/" />
@@ -18,13 +13,18 @@
   </component>
   <component name="FileEditorManager">
     <leaf>
-      <file pinned="false" current-in-tab="true">
+      <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/index.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="1488">
-              <caret line="93" column="43" selection-start-line="93" selection-start-column="43" selection-end-line="93" selection-end-column="43" />
+            <state relative-caret-position="-453">
+              <caret line="31" column="2" lean-forward="true" selection-start-line="17" selection-end-line="31" selection-end-column="2" />
             </state>
           </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/assets/baldy.greyscale.bmp">
+          <provider selected="true" editor-type-id="images" />
         </entry>
       </file>
       <file pinned="false" current-in-tab="false">
@@ -38,6 +38,16 @@
       </file>
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/assets/baldy.bmp">
+          <provider selected="true" editor-type-id="images" />
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/assets/24bit.bmp">
+          <provider selected="true" editor-type-id="images" />
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/assets/baldy.invert.bmp">
           <provider selected="true" editor-type-id="images" />
         </entry>
       </file>
@@ -61,6 +71,11 @@
         <option value="JavaScript File" />
       </list>
     </option>
+  </component>
+  <component name="FindInProjectRecents">
+    <findStrings>
+      <find>file</find>
+    </findStrings>
   </component>
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
@@ -89,6 +104,11 @@
             <path>
               <item name="Bitmap-Transformer" type="b2602c69:ProjectViewProjectNode" />
               <item name="Bitmap-Transformer" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="Bitmap-Transformer" type="b2602c69:ProjectViewProjectNode" />
+              <item name="Bitmap-Transformer" type="462c0819:PsiDirectoryNode" />
+              <item name="assets" type="462c0819:PsiDirectoryNode" />
             </path>
           </expand>
           <select />
@@ -127,18 +147,18 @@
       <updated>1550358425412</updated>
       <workItem from="1550358429113" duration="819000" />
       <workItem from="1550811340290" duration="1194000" />
-      <workItem from="1550965318009" duration="3465000" />
+      <workItem from="1550965318009" duration="3737000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="5478000" />
+    <option name="totallyTimeSpent" value="5750000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="0" y="0" width="1680" height="1050" extended-state="0" />
     <editor active="true" />
     <layout>
-      <window_info content_ui="combo" id="Project" order="0" weight="0.14466546" />
+      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.14466546" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
       <window_info id="Favorites" order="2" side_tool="true" />
       <window_info id="npm" order="3" side_tool="true" />
@@ -163,9 +183,6 @@
     <option name="version" value="1" />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/assets/24bit.bmp">
-      <provider selected="true" editor-type-id="images" />
-    </entry>
     <entry file="file://$PROJECT_DIR$/lib/node.js" />
     <entry file="file://$PROJECT_DIR$/lib/linked-list.js" />
     <entry file="file://$PROJECT_DIR$/.gitignore">
@@ -184,12 +201,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/assets/baldy.invert.bmp">
-      <provider selected="true" editor-type-id="images" />
-    </entry>
-    <entry file="file://$PROJECT_DIR$/assets/baldy.bmp">
-      <provider selected="true" editor-type-id="images" />
-    </entry>
     <entry file="file://$PROJECT_DIR$/cat.js">
       <provider selected="true" editor-type-id="text-editor">
         <state>
@@ -199,10 +210,22 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/index.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1488">
-          <caret line="93" column="43" selection-start-line="93" selection-start-column="43" selection-end-line="93" selection-end-column="43" />
+        <state relative-caret-position="-453">
+          <caret line="31" column="2" lean-forward="true" selection-start-line="17" selection-end-line="31" selection-end-column="2" />
         </state>
       </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/assets/baldy.greyscale.bmp">
+      <provider selected="true" editor-type-id="images" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/assets/baldy.bmp">
+      <provider selected="true" editor-type-id="images" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/assets/24bit.bmp">
+      <provider selected="true" editor-type-id="images" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/assets/baldy.invert.bmp">
+      <provider selected="true" editor-type-id="images" />
     </entry>
   </component>
 </project>
