@@ -2,6 +2,8 @@
 
 const fs = require('fs');
 
+const regex = /(.bmp)$/g;
+
 //quokka test 
 
 //bitmap class
@@ -33,7 +35,7 @@ const writeNewFile = (inputFile, transformation) => {
         }
         console.log('Status 200');
     });
-}
+};
 
 // test transformations
 
@@ -91,6 +93,7 @@ class Transform{
 }
 
 
+
 //file read
 const readFile = (file, transformation) => {
 
@@ -111,36 +114,46 @@ const readFile = (file, transformation) => {
        let transformConstructor = new Transform(colorArray);
 
        //transform based on input string
-        if(transformation.toLowerCase() === 'negative'){
-            transformConstructor.negative();
-        }
 
-        if(transformation.toLowerCase() === 'pinkhighlights'){
-            transformConstructor.pinkHighlights();
-        }
 
-        if(transformation.toLowerCase() === 'allblack'){
-            transformConstructor.allBlack();
-        }
-       
-        if(transformation.toLowerCase() === 'allwhite'){
-            transformConstructor.allWhite();
-        }
 
-        if(transformation.toLowerCase() === 'neon1'){
-            transformConstructor.neon1();
-        }
-       
-        if(transformation.toLowerCase() === 'neon2'){
-            transformConstructor.neon2();
-        }
-        writeNewFile(data, transformation);
+            if (transformation.toLowerCase() === 'negative') {
+                transformConstructor.negative();
+            }
 
+            if (transformation.toLowerCase() === 'pinkhighlights') {
+                transformConstructor.pinkHighlights();
+            }
+
+            if (transformation.toLowerCase() === 'allblack') {
+                transformConstructor.allBlack();
+            }
+
+            if (transformation.toLowerCase() === 'allwhite') {
+                transformConstructor.allWhite();
+            }
+
+            if (transformation.toLowerCase() === 'neon1') {
+                transformConstructor.neon1();
+            }
+
+            if (transformation.toLowerCase() === 'neon2') {
+                transformConstructor.neon2();
+            }
+            writeNewFile(data, transformation);
     });
-}
+
+    if(!regex.test(`${file}`)) {
+        return'Not a .bmp file';
+    }
+};
 
 //gets arguments from console input
 const [file, transformation] = process.argv.slice(2);
 
 //reads file based on console input
 readFile(file, transformation);
+
+console.log(file);
+
+module.exports = readFile;
