@@ -156,4 +156,4 @@ readFile(file, transformation);
 
 console.log(file);
 
-module.exports = readFile;
+module.exports = readFile, Transform;
