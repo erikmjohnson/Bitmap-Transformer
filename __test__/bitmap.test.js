@@ -1,7 +1,7 @@
 'use strict';
 
 const readFile = require('../index');
-const Tranform = require('../lib/transform');
+const Transform = require('../lib/transform');
 const image = '../assets/baldy.bmp';
 let x = readFile(image, 'allBlack');
 
@@ -17,7 +17,9 @@ describe ('testing Bitmap functionality', () => {
   });
   test('testing negative transform', () => {
     const testArray = [1,2,3,5];
-    expect(new Transform.negative(testArray).toEqual(3,2,1,0));
+    const test = new Transform(testArray);
+    test.negative();
+    expect(testArray).toEqual([3,2,1,0]);
   })
   // further tests on if class/objects work
 });
