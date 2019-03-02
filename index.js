@@ -2,6 +2,7 @@
 
 const fs = require('fs');
 const Transform = require('./lib/transform');
+const Transformer = require('./lib/transformCheck');
 const regex = /(.bmp)$/g;
 
 //quokka test 
@@ -32,7 +33,6 @@ const writeNewFile = (inputFile, transformation) => {
         if(err){
             throw err;
         }
-        console.log('Status 200');
     });
 };
 
@@ -40,9 +40,7 @@ const writeNewFile = (inputFile, transformation) => {
 const readFile = (file, transformation) => {
 
     fs.readFile(file, function(err, data){
-        if(err){
-            throw err;
-        }
+        if(err) throw err;
 
         //create parseable file
         let newBitmap = new Bitmap(data);
@@ -55,34 +53,12 @@ const readFile = (file, transformation) => {
        let transformConstructor = new Transform(colorArray);
 
        //transform based on input string
+        Transformer(transformation, transformConstructor);
 
-            if (transformation.toLowerCase() === 'negative') {
-                transformConstructor.negative();
-            }
-
-            if (transformation.toLowerCase() === 'pinkhighlights') {
-                transformConstructor.pinkHighlights();
-            }
-
-            if (transformation.toLowerCase() === 'allblack') {
-                transformConstructor.allBlack();
-            }
-
-            if (transformation.toLowerCase() === 'allwhite') {
-                transformConstructor.allWhite();
-            }
-
-            if (transformation.toLowerCase() === 'neon1') {
-                transformConstructor.neon1();
-            }
-
-            if (transformation.toLowerCase() === 'neon2') {
-                transformConstructor.neon2();
-            }
-            writeNewFile(data, transformation);
-            return colorArray;
+        writeNewFile(data, transformation);
+        // return colorArray;
     });
-
+    // testing if file is a .bmp
     if(!regex.test(`${file}`)) {
         return 'Not a .bmp file';
     }
@@ -93,7 +69,5 @@ const [file, transformation] = process.argv.slice(2);
 
 //reads file based on console input
 readFile(file, transformation);
-
-console.log(file);
 
 module.exports = readFile;

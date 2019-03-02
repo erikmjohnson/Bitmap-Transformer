@@ -22,7 +22,9 @@
   },
   "homepage": "https://github.com/Nikki1686/Bitmap-Transformer#readme",
   "dependencies": {
-    "eslint": "^5.15.0",
+    "eslint": "^5.15.0"
+  },
+  "devDependencies": {
     "jest": "^24.1.0"
   }
 }
