@@ -2,29 +2,27 @@
 
 const fs = require('fs');
 const Transform = require('./lib/transform');
-
 const regex = /(.bmp)$/g;
 
 //quokka test 
 
 //bitmap class
 class Bitmap{
-    constructor(filepath){
-        this.filepath = filepath;
-    }
+    // constructor(filepath){
+    //     this.filepath = filepath;
+    // }
 
     parse(buffer){
-        this. buffer = buffer;
+        // this. buffer = buffer;
         this.type = buffer.toString('utf-8', 0, 2);
-        this.size = buffer.readInt32LE(2);
+        // this.size = buffer.readInt32LE(2);
         this.offset = buffer.readInt32LE(10);
-        this.headerSize = buffer.readInt32LE(14);
-        this.width = buffer.readInt32LE(18);
-        this.height = buffer.readInt32LE(22);
-        this.bitsPerPixel = buffer.readInt16LE(28);
-        this.colorArray = buffer.slice(54, this.offset);
-        this.pixelArray = buffer.slice(1078);
-    
+        // this.headerSize = buffer.readInt32LE(14);
+        // this.width = buffer.readInt32LE(18);
+        // this.height = buffer.readInt32LE(22);
+        // this.bitsPerPixel = buffer.readInt16LE(28);
+        // this.colorArray = buffer.slice(54, this.offset);
+        // this.pixelArray = buffer.slice(1078);
     }
 }
 
@@ -37,9 +35,6 @@ const writeNewFile = (inputFile, transformation) => {
         console.log('Status 200');
     });
 };
-
-
-
 
 //file read
 const readFile = (file, transformation) => {
@@ -55,14 +50,11 @@ const readFile = (file, transformation) => {
         //parse
         newBitmap.parse(data);
 
-
         //create constructor from parsed color array
        let colorArray = data.slice(54, newBitmap.offset);
        let transformConstructor = new Transform(colorArray);
 
        //transform based on input string
-
-
 
             if (transformation.toLowerCase() === 'negative') {
                 transformConstructor.negative();
