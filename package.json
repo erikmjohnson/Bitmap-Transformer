@@ -8,7 +8,7 @@
   },
   "scripts": {
     "lint": "eslint **/*.js",
-    "test": "jest --verbose --coverage",
+    "test": "jest --verbose --coverage --runInBand",
     "test-watch": "jest --watchAll --verbose --coverage"
   },
   "repository": {
@@ -22,9 +22,9 @@
   },
   "homepage": "https://github.com/Nikki1686/Bitmap-Transformer#readme",
   "dependencies": {
-    "eslint": "^5.15.0"
-  },
-  "devDependencies": {
+    "eslint": "^5.15.0",
+    "fs": "0.0.1-security",
     "jest": "^24.1.0"
-  }
+  },
+  "devDependencies": {}
 }

@@ -31,37 +31,37 @@ const writeNewFile = (inputFile, transformation) => {
 
     fs.writeFile(`./assets/${transformation}.bmp`, inputFile, (err) => {
         if(err){
-            throw err;
+             throw err;
         }
     });
 };
 
 //file read
 const readFile = (file, transformation) => {
-
-    fs.readFile(file, function(err, data){
-        if(err) throw err;
-
-        //create parseable file
-        let newBitmap = new Bitmap(data);
-
-        //parse
-        newBitmap.parse(data);
-
-        //create constructor from parsed color array
-       let colorArray = data.slice(54, newBitmap.offset);
-       let transformConstructor = new Transform(colorArray);
-
-       //transform based on input string
-        Transformer(transformation, transformConstructor);
-
-        writeNewFile(data, transformation);
-        // return colorArray;
-    });
     // testing if file is a .bmp
     if(!regex.test(`${file}`)) {
         return 'Not a .bmp file';
+    } else{
+        fs.readFile(file, function (err, data) {
+            if (err) throw err;
+
+            //create parseable file
+            let newBitmap = new Bitmap(data);
+
+            //parse
+            newBitmap.parse(data);
+
+            //create constructor from parsed color array
+            let colorArray = data.slice(54, newBitmap.offset);
+            let transformConstructor = new Transform(colorArray);
+
+            //transform based on input string
+            Transformer(transformation, transformConstructor);
+
+            writeNewFile(data, transformation);
+        });
     }
+
 };
 
 //gets arguments from console input
